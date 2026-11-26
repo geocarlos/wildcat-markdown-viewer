@@ -86,6 +86,7 @@ class ViewerApp:
         self.window: webview.Window | None = None
         self._initial = initial
         self._size_timer: threading.Timer | None = None
+        self._state = "normal"  # normal | maximized | minimized
 
     def start_url(self) -> str:
         if self._initial is not None:
@@ -112,23 +113,57 @@ class ViewerApp:
                     self.window.load_url(self.server.doc_url(p))
                     return
 
+    # pywebview fires maximized/minimized/restored *before* the matching resized event,
+    # so the state flag is current when _on_resized runs.
+    def _on_maximized(self) -> None:
+        self._state = "maximized"
+        self.settings.maximized = True
+        self._save_soon()
+
+    def _on_minimized(self) -> None:
+        self._state = "minimized"
+
+    def _on_restored(self) -> None:
+        if self._state == "maximized":
+            self.settings.maximized = False
+            self._save_soon()
+        self._state = "normal"
+
     def _on_resized(self, width: int, height: int) -> None:
-        if self.window is None or width < 300 or height < 300:
+        # Only remember the size of a normal (not maximized/minimized) window.
+        if self.window is None or self._state != "normal" or width < 300 or height < 300:
             return
         self.settings.width, self.settings.height = int(width), int(height)
+        self._save_soon()
+
+    def _save_soon(self) -> None:
         if self._size_timer:
             self._size_timer.cancel()
         self._size_timer = threading.Timer(1.0, self.settings.save)
         self._size_timer.daemon = True
         self._size_timer.start()
 
+    def _initial_size(self) -> tuple[int, int]:
+        """Saved size, clamped to the primary screen's logical size."""
+        w, h = self.settings.width, self.settings.height
+        try:
+            screen = webview.screens[0]
+            w = min(w, int(screen.width * 0.95))
+            h = min(h, int(screen.height * 0.92))
+        except Exception:
+            pass
+        return max(w, 480), max(h, 360)
+
     def run(self, debug: bool = False) -> None:
+        width, height = self._initial_size()
+        self._state = "maximized" if self.settings.maximized else "normal"
         self.window = webview.create_window(
             APP_NAME,
             url=self.start_url(),
             js_api=Api(self),
-            width=self.settings.width,
-            height=self.settings.height,
+            width=width,
+            height=height,
+            maximized=self.settings.maximized,
             min_size=(480, 360),
             text_select=True,
             zoomable=False,
@@ -136,6 +171,9 @@ class ViewerApp:
         )
         self.window.events.loaded += self._on_loaded
         self.window.events.resized += self._on_resized
+        self.window.events.maximized += self._on_maximized
+        self.window.events.minimized += self._on_minimized
+        self.window.events.restored += self._on_restored
         icon = assets_dir() / "icon.ico"
         webview.start(
             gui="edgechromium",

@@ -20,6 +20,7 @@ class Settings:
     width: int = 1100
     height: int = 850
     show_outline: bool = False
+    maximized: bool = False
 
     _lock = threading.Lock()
 
@@ -42,6 +43,7 @@ class Settings:
             if isinstance(data.get(key), int) and 300 <= data[key] <= 10000:
                 setattr(s, key, data[key])
         s.show_outline = bool(data.get("show_outline", False))
+        s.maximized = bool(data.get("maximized", False))
         return s
 
     def save(self) -> None:
