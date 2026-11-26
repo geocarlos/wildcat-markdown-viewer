@@ -111,3 +111,17 @@ wv -> py.srv: poll for changes
 - `app.py`: pywebview window and the JS ↔ Python bridge
 - `assets/`: vendored github-markdown-css 5.8.1, KaTeX 0.16.11, Mermaid 11.4.1, app JS/CSS
 - `installer/`: PyInstaller spec and Inno Setup script
+
+## License
+
+Wildcat Markdown Viewer is licensed under the [Apache License 2.0](LICENSE).
+
+Bundled third-party components keep their own licenses:
+
+| Component | License |
+| --- | --- |
+| [D2](https://github.com/terrastruct/d2) (`d2.exe`, in the installer) | MPL-2.0 |
+| [github-markdown-css](https://github.com/sindresorhus/github-markdown-css) | MIT |
+| [KaTeX](https://github.com/KaTeX/KaTeX) | MIT |
+| [Mermaid](https://github.com/mermaid-js/mermaid) | MIT |
+| Python dependencies (pywebview, markdown-it-py, Pygments, …) | see each package |

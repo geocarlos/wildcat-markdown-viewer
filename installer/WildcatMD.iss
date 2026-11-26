@@ -45,6 +45,7 @@ Name: "fileassoc"; Description: "Add to ""Open with"" for Markdown files (.md, .
 Source: "..\dist\WildcatMD\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\samples\feature-tour.md"; DestDir: "{app}\samples"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme
+Source: "..\LICENSE"; DestDir: "{app}"; DestName: "LICENSE.txt"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#AppName}"; Filename: "{app}\{#AppExe}"
