@@ -1,0 +1,4 @@
+d2.exe in this folder is D2 (https://d2lang.com), Copyright Terrastruct, Inc.,
+distributed unmodified under the Mozilla Public License 2.0 (https://mozilla.org/MPL/2.0/).
+
+Source code: https://github.com/terrastruct/d2
