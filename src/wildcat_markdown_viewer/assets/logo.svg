@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFC23D"/>
+      <stop offset="1" stop-color="#F08A1C"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#1B1A1F" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+    <!-- head with wild ruff and tufted ears -->
+    <path fill="url(#fur)" d="
+      M118,22 L132,60 L182,150 L330,150 L380,60 L396,18 L404,72 L414,168
+      L474,214 L432,248 L492,292 L430,312 L470,368 L396,382
+      L338,430 L256,452 L174,430 L116,382
+      L42,368 L82,312 L20,292 L80,248 L38,214
+      L98,168 L110,74 Z"/>
+    <!-- inner ears -->
+    <path fill="#E8566B" stroke-width="10" d="M136,88 L170,152 L118,166 Z"/>
+    <path fill="#E8566B" stroke-width="10" d="M376,88 L342,152 L394,166 Z"/>
+  </g>
+  <!-- tabby stripes -->
+  <g fill="#1B1A1F">
+    <path d="M232,152 L256,200 L280,152 Z"/>
+    <path d="M196,156 L214,186 L224,154 Z"/>
+    <path d="M316,156 L298,186 L288,154 Z"/>
+    <path d="M30,292 L84,300 L80,284 Z"/>
+    <path d="M482,292 L428,300 L432,284 Z"/>
+  </g>
+  <!-- crazy eyes: one small slit, one huge with a tiny wandering pupil -->
+  <g stroke="#1B1A1F" stroke-width="10">
+    <circle cx="186" cy="244" r="38" fill="#D7F04A"/>
+    <circle cx="328" cy="238" r="52" fill="#D7F04A"/>
+  </g>
+  <ellipse cx="190" cy="246" rx="8" ry="28" fill="#1B1A1F"/>
+  <circle cx="344" cy="226" r="13" fill="#1B1A1F"/>
+  <circle cx="176" cy="228" r="7" fill="#fff"/>
+  <circle cx="310" cy="216" r="8" fill="#fff"/>
+  <!-- nose -->
+  <path d="M238,298 L274,298 L256,318 Z" fill="#E8566B" stroke="#1B1A1F" stroke-width="8" stroke-linejoin="round"/>
+  <!-- manic grin -->
+  <path d="M172,330 Q256,430 344,322 Q256,358 172,330 Z" fill="#1B1A1F" stroke="#1B1A1F" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M290,372 Q312,412 286,420 Q262,416 272,378 Z" fill="#E8566B" stroke="#1B1A1F" stroke-width="7"/>
+  <path d="M204,340 L226,346 L214,374 Z" fill="#fff"/>
+  <path d="M304,338 L322,330 L316,360 Z" fill="#fff"/>
+  <!-- code-bracket whiskers -->
+  <g fill="none" stroke="#FFF4DA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="140,300 96,326 140,352"/>
+    <polyline points="372,300 416,326 372,352"/>
+    <line x1="402" y1="282" x2="384" y2="368" stroke-width="0"/>
+  </g>
+</svg>
