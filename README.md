@@ -63,7 +63,7 @@ Run `WildcatMD-Setup-<version>.exe`. It installs per machine (for all users) int
 "Open with" entry for `.md` / `.markdown` files. To make it the default viewer, right-click a
 `.md` file → *Open with* → *Choose another app* → **Wildcat Markdown Viewer** → *Always*.
 
-Silent install: `WildcatMD-Setup-0.1.0.exe /VERYSILENT /SUPPRESSMSGBOXES`
+Silent install: `WildcatMD-Setup-0.1.1.exe /VERYSILENT /SUPPRESSMSGBOXES`
 
 Requires Windows 10 1809+ (x64) and the Microsoft Edge WebView2 Runtime (preinstalled on Windows 11).
 
