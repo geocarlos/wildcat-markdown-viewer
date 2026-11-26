@@ -1,0 +1,28 @@
+[project]
+name = "wildcat-markdown-viewer"
+version = "0.1.0"
+description = "GitHub-style Markdown viewer for Windows with D2 diagram support"
+readme = "README.md"
+authors = [
+    { name = "geocarlos", email = "geowildcat@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "emoji>=2.16.0",
+    "markdown-it-py[linkify]>=4.3.0",
+    "mdit-py-plugins>=0.7.0",
+    "pygments>=2.21.0",
+    "pywebview>=6.2.1",
+]
+
+[project.scripts]
+wildcat-markdown-viewer = "wildcat_markdown_viewer:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.3",
+]
