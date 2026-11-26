@@ -1,0 +1,23 @@
+# Normalize line endings: LF in the repository and in working copies.
+* text=auto eol=lf
+
+# Windows-native scripts keep CRLF in the working copy.
+*.ps1 text eol=crlf
+*.iss text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.ico binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.exe binary
+
+# Vendored, minified third-party assets: don't diff, hide from language stats
+src/wildcat_markdown_viewer/assets/katex/** -diff linguist-vendored
+src/wildcat_markdown_viewer/assets/mermaid/** -diff linguist-vendored
+src/wildcat_markdown_viewer/assets/github/** linguist-vendored
