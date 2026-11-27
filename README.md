@@ -18,7 +18,7 @@ A fast, GitHub-style Markdown viewer for Windows with built-in **D2** diagram su
 - **Live reload** when the file changes on disk, preserving the scroll position
 - Relative images and links, links between `.md` files (with Back/Forward), folder browsing
 - Outline sidebar, find in page, zoom, print / Save as PDF, open in editor, show in Explorer
-- Drag & drop files onto the window; recent files on the start page
+- Recent files on the start page
 - Works fully offline; all JS/CSS is bundled
 
 ### D2 fence options (viewer extension)
