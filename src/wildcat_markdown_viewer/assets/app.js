@@ -275,6 +275,23 @@
     flash("Zoom " + Math.round(zoom * 100) + "%");
   }
 
+  // Back/Forward: grey the buttons out when there is no history in that direction
+  // (e.g. a file opened straight from Explorer). Navigation API is Chromium/WebView2.
+  const nav = window.navigation;
+  function canGo(dir) {
+    if (!nav) return true;
+    return dir === "back" ? nav.canGoBack : nav.canGoForward;
+  }
+  function updateNavButtons() {
+    for (const dir of ["back", "forward"]) {
+      const btn = document.querySelector(`#toolbar [data-cmd="${dir}"]`);
+      if (btn) btn.disabled = !canGo(dir);
+    }
+  }
+  nav?.addEventListener("currententrychange", updateNavButtons);
+  addEventListener("pageshow", updateNavButtons);
+  updateNavButtons();
+
   async function command(cmd) {
     switch (cmd) {
       case "open": {
@@ -282,8 +299,8 @@
         if (url) location.href = url;
         break;
       }
-      case "back": history.back(); break;
-      case "forward": history.forward(); break;
+      case "back": if (canGo("back")) history.back(); break;
+      case "forward": if (canGo("forward")) history.forward(); break;
       case "reload": location.reload(); break;
       case "outline": setOutline(!document.body.classList.contains("show-outline"), true); break;
       case "edit": if (cfg.doc) call("edit", cfg.doc); break;

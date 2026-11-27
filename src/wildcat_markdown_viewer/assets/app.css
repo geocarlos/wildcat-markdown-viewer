@@ -58,6 +58,7 @@ body { margin: 0; background: var(--page-bg); }
 #toolbar button:hover, #toolbar select:hover, #findbar button:hover {
   background: var(--tb-hover); border-color: var(--tb-border);
 }
+#toolbar button:disabled { opacity: 0.35; cursor: default; background: transparent; border-color: transparent; }
 #toolbar select { border-color: var(--tb-border); }
 #toolbar select option { background: var(--tb-bg); color: var(--tb-fg); }
 #docpath {
