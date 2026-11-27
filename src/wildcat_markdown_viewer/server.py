@@ -203,7 +203,7 @@ class ViewerServer:
         return f"""
 <div class="brand"><img src="{self.prefix}/_app/logo.svg" alt="" width="96" height="96">
 <h1>{escape(APP_NAME)}</h1></div>
-<p>Open a Markdown file with <kbd>Ctrl</kbd>+<kbd>O</kbd>, or drag &amp; drop one onto this window.</p>
+<p>Open a Markdown file with <kbd>Ctrl</kbd>+<kbd>O</kbd>.</p>
 <p><button class="primary" data-cmd="open">Open a file…</button></p>
 {recent}
 <h2>Supports</h2>

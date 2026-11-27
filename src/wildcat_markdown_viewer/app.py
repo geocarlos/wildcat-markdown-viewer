@@ -11,10 +11,9 @@ import webbrowser
 from pathlib import Path
 
 import webview
-from webview.dom import DOMEventHandler
 
 from . import __version__
-from .paths import APP_NAME, assets_dir, cache_dir, is_markdown
+from .paths import APP_NAME, assets_dir, cache_dir
 from .server import ViewerServer
 from .settings import THEMES, Settings
 
@@ -94,25 +93,6 @@ class ViewerApp:
         return self.server.home_url()
 
     # -- events ---------------------------------------------------------------------
-    def _on_loaded(self, window: webview.Window) -> None:
-        # DOM handlers must be re-bound after every navigation.
-        try:
-            doc = window.dom.document
-            doc.events.dragover += DOMEventHandler(_noop, prevent_default=True)
-            doc.events.drop += DOMEventHandler(self._on_drop, prevent_default=True)
-        except Exception:
-            pass
-
-    def _on_drop(self, event: dict) -> None:
-        files = (event.get("dataTransfer") or {}).get("files") or []
-        for f in files:
-            full = f.get("pywebviewFullPath")
-            if full:
-                p = Path(full)
-                if p.is_dir() or is_markdown(p) or p.suffix.lower() == ".txt":
-                    self.window.load_url(self.server.doc_url(p))
-                    return
-
     # pywebview fires maximized/minimized/restored *before* the matching resized event,
     # so the state flag is current when _on_resized runs.
     def _on_maximized(self) -> None:
@@ -169,7 +149,6 @@ class ViewerApp:
             zoomable=False,
             background_color="#0d1117" if self.settings.theme == "dark" else "#FFFFFF",
         )
-        self.window.events.loaded += self._on_loaded
         self.window.events.resized += self._on_resized
         self.window.events.maximized += self._on_maximized
         self.window.events.minimized += self._on_minimized
@@ -184,10 +163,6 @@ class ViewerApp:
         )
         self.settings.save()
         self.server.stop()
-
-
-def _noop(_event) -> None:
-    pass
 
 
 def main(argv: list[str] | None = None) -> int:
